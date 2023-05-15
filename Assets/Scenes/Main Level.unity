@@ -606,7 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  defaultWeapon: {fileID: 3962863713495565214, guid: 56efa5e36d601af47934e7b3e8f25889, type: 3}
+  defaultWeapon: {fileID: 4960833666122570375, guid: 13578899f3d09994aa1db01d7316742c, type: 3}
   equippedWeapon: {fileID: 0}
   weaponSlot: {fileID: 504766509}
 --- !u!58 &1148014235
