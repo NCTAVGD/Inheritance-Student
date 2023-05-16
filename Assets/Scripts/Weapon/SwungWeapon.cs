@@ -10,7 +10,7 @@ public class SwungWeapon : Weapon
 
     public float swingDegrees;
     public float swingSpeed;
-    public Transform spawnPos;
+
     public GameObject projPrefab;
 
 
@@ -41,7 +41,7 @@ public class SwungWeapon : Weapon
         {
             transform.Rotate(Vector3.forward, swingSpeed * Time.deltaTime);
             degrees += swingSpeed * Time.deltaTime;
-            Instantiate(projPrefab, spawnPos.position, spawnPos.transform.rotation);
+
             yield return new WaitForEndOfFrame();
         }
 

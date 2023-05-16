@@ -11,8 +11,9 @@ public class FireWeapon : Weapon
 
     public float fireDegrees;
     public float fireSpeed;
-    public GameObject projectilePrefab;
-
+    public GameObject projPrefab;
+    public Transform spawnPos;
+    public bool isMultiShotOn;
 
     public override void Attack()
     {
@@ -21,6 +22,8 @@ public class FireWeapon : Weapon
         //Activate Weapon
         EnableWeapon();
         StartCoroutine("Fire");
+        MultiShot();
+
         //Invoke the reset method
 
         //Swing and Deactivate
@@ -28,7 +31,11 @@ public class FireWeapon : Weapon
     }
 
 
+    void Shoot()
+    {
+        Instantiate(projPrefab, spawnPos.position, spawnPos.transform.rotation);
 
+    }
     //Swinging coroutine
 
     IEnumerator Fire()
@@ -38,11 +45,31 @@ public class FireWeapon : Weapon
         {
             //transform.Rotate(Vector3.forward, fireSpeed * Time.deltaTime);
             //degrees += fireSpeed * Time.deltaTime;
-            Instantiate(projectilePrefab, new Vector3(0, 0, 0), projectilePrefab.transform.rotation);
+
             yield return new WaitForEndOfFrame();
         }
 
         DisableWeapon();
+    }
+
+
+
+
+
+    void MultiShot()
+    {
+        if (isMultiShotOn)
+        {
+            transform.Rotate(Vector3.forward, -20);
+            Instantiate(projPrefab, spawnPos.position, spawnPos.transform.rotation);
+            transform.Rotate(Vector3.forward, 20);
+            Instantiate(projPrefab, spawnPos.position, spawnPos.transform.rotation);
+            transform.Rotate(Vector3.forward, 20);
+            Instantiate(projPrefab, spawnPos.position, spawnPos.transform.rotation);
+            transform.Rotate(Vector3.forward, -20);
+        }
+        else
+            Shoot();
     }
 
 }

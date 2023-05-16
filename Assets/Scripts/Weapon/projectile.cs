@@ -9,6 +9,7 @@ public class projectile : MonoBehaviour
 
     public float speed;
     public float randomNumber;
+    public float damage;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,17 @@ public class projectile : MonoBehaviour
     void Update()
     {
 
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Check if the collider belongs to an enemy.
+        if (collision.CompareTag("Enemy"))
+        {
+            // If it does, deal damage to the enemy.
+            collision.GetComponent<Enemy>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }
